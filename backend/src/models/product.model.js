@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const schema = new Schema({
-  name: { type: string, required: true },
-  shop: { type: schema.Types.ObjectId, ref: "Shop", required: true },
+  name: { type: String, required: true },
+  shop: { type: Schema.Types.ObjectId, ref: "Shop", required: true },
   category: {
-    type: string,
+    type: String,
     required: false,
     enum: ["ELECTRONIC", "CLOTHES", "FOOD", "OTHER"],
   },

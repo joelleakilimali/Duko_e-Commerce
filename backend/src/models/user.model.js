@@ -15,6 +15,12 @@ const schema = new Schema({
     enum: ["CLIENT", "SHOP_OWNER", "ADMIN"],
     default: "CLIENT",
   },
+  status: {
+    type: String,
+    required: false,
+    enum: ["ACTIF", "NOT_ACTIF"],
+    default: "ACTIF",
+  },
   createdAt: { type: Date, default: Date.now() },
 });
 module.exports = mongoose.model("User", schema);
