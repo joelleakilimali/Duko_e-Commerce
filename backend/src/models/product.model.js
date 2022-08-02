@@ -7,13 +7,15 @@ const schema = new Schema({
     type: String,
     required: false,
     enum: ["ELECTRONIC", "CLOTHES", "FOOD", "OTHER"],
+    dfault: "CLOTHES",
   },
   price: { type: Number, required: false },
   status: {
-    type: string,
+    type: String,
     required: false,
-    enum: ["available", "out of stock"],
+    enum: ["AVAILABLE", "OUT_OF_STOCK"],
+    default: "AVAILABLE",
   },
   createdAt: { type: Date, default: Date.now() },
 });
-modules.exports = mongoose.model("Product", schema);
+module.exports = mongoose.model("Product", schema);

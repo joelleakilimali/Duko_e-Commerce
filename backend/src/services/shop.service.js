@@ -21,4 +21,7 @@ module.exports = {
   checkExistenceShop: async (shopName) => {
     return Shop.findOne({ name: shopName });
   },
+  checkExistenceShopById: async (shopId) => {
+    return Shop.findOne({ id: shopId });
+  },
 };

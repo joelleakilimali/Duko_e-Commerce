@@ -22,7 +22,7 @@ databse_connexion();
 
 const UserRoute = require("./backend/src/routes/user.route");
 const ShopRoute = require("./backend/src/routes/shop.route");
-const productRoute = require("./backend/src/routes/user.route.js");
+const productRoute = require("./backend/src/routes/product.route.js");
 const basketRoute = require("./backend/src/routes/basket.route.js");
 
 //creation of our initial route using the function 'use'
@@ -38,3 +38,4 @@ app.use(
 app.use("/api/users", UserRoute);
 app.use("/api/shops", ShopRoute);
 app.use("/api/baskets", basketRoute);
+app.use("/api/products", productRoute);

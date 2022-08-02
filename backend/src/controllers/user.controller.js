@@ -45,7 +45,7 @@ module.exports = {
   updatedUser: async (req, res) => {
     const userId = await getUserById(req.params.id);
     if (!userId) {
-      return res.status(404).json({ message: "you must select a user" });
+      return res.status(404).json({ message: "you must select a user..." });
     }
 
     const updatedinfo = await updateUsers(userId, req.body);

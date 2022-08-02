@@ -9,6 +9,7 @@ const {
   updateShop,
 } = require("../services/shop.service");
 const { getUserById } = require("../services/user.service");
+const { updatedProduct } = require("./product.controller");
 
 module.exports = {
   makeShop: async (req, res) => {
