@@ -6,6 +6,7 @@ const {
   findShopByOwnerId,
   updatedShop,
   closeShop,
+  findShopSellingProduct,
 } = require("../controllers/shop.controller");
 const route = express.Router();
 

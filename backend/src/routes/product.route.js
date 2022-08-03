@@ -2,9 +2,11 @@ const express = require("express");
 const {
   makeProduct,
   updatedProduct,
-  addShoSelling,
   findAllProduct,
   findProductById,
+  findShopSellingProduct,
+  findShopSellingProductByName,
+  changeStatusProduct,
 } = require("../controllers/product.controller");
 const route = express.Router();
 /**
@@ -12,13 +14,14 @@ const route = express.Router();
  * @method post
  * @url /api/products/:id
  */
-route.post("/:id", makeProduct);
+route.post("/create/:id", makeProduct);
 
 /**
  * @description update an information from product table
  * @method  PUT
  * @url /api/product/
  */
+route.put("/:id", updatedProduct);
 
 /**
  * @description get a list of a specific  products
@@ -34,11 +37,25 @@ route.get("/:id", findProductById);
  */
 route.get("/", findAllProduct);
 
-route.put("/:id", updatedProduct);
 /**
- * @description add a shop to the list of shopp selling a specific product
- * @method post
- * @url /api/products/addshop/:id
+ * @description get shop that is selling a specific product uding the productId
+ * @method get
+ * @url /api/products/shops/
  */
-route.post("/addshop/:id", addShoSelling);
+route.get("/shops/:id", findShopSellingProduct);
+
+/**
+ * @description get shop that is selling a specific product uding the producName
+ * @method post
+ * @url /api/products/shopsbyname/
+ */
+route.post("/shopsbyname", findShopSellingProductByName);
+
+/**
+ * @description set the status of a product OUT_OF_STOCK
+ * @method PUT
+ * @url /api/product/status/:id
+ */
+route.put("/status/:id", changeStatusProduct);
+
 module.exports = route;

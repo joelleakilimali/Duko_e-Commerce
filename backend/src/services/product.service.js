@@ -14,4 +14,20 @@ module.exports = {
     const update = body;
     return await Product.findOneAndUpdate(filter, update);
   },
+
+  getshopSellingProduct: async (productID) => {
+    return await Product.findOne({ id: productID }).populate({
+      path: "shop",
+      select: "name",
+    });
+  },
+  getshopSellingProductByName: async (producName) => {
+    const regex = new RegExp(producName, "i");
+    return await Product.find({ name: { $regex: regex } }).populate("shop");
+    // we will find shop that sell product that coontent the specif name
+  },
+  getshopsellingspecificProductname: async (producName) => {
+    return await Product.find({ name: producName }).populate("shop");
+    // we will find shop that sell only the specif name
+  },
 };

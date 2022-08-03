@@ -3,9 +3,10 @@ const {
   getProductById,
   updateProduct,
   getAllProduct,
+  getshopSellingProduct,
+  getshopSellingProductByName,
 } = require("../services/product.service");
 const { checkExistenceShopById } = require("../services/shop.service");
-const { getUserById } = require("../services/user.service");
 
 module.exports = {
   makeProduct: async (req, res) => {
@@ -29,7 +30,6 @@ module.exports = {
     const productId = req.params.id;
     const product = await getProductById(productId);
     if (!product) {
-      console.log(shop);
       return res.status(400).json({ data: "Product  not dound" });
     }
     const updatedinfo = await updateProduct(productId, body);
@@ -43,13 +43,34 @@ module.exports = {
     products = await getAllProduct();
     return res.status(200).json({ data: products });
   },
-  addShoSelling: async (req, res) => {
-    const shopId = req.params.id;
-    const productId = req.body.productId;
-    body = req.body;
-    await updateProduct(productId, { ...body, shop: shopId });
-    return res
-      .status(200)
-      .json({ message: "new shop selling this product has been added" });
+
+  findShopSellingProduct: async (req, res) => {
+    const producId = req.params.id;
+    check = await getProductById(producId);
+    if (!check) {
+      return res.status(400).json({ data: "product not dound" });
+    }
+    const listShop = await getshopSellingProduct(producId);
+    return res.status(200).json({ data: listShop });
+  },
+  findShopSellingProductByName: async (req, res) => {
+    const producName = req.body.name;
+
+    const listShop = await getshopSellingProductByName(producName);
+    if (!listShop) {
+      return res.status(400).json({ data: "product not dound" });
+    }
+    return res.status(200).json({ data: listShop });
+  },
+  changeStatusProduct: async (req, res) => {
+    productId = req.params.id;
+    check = await getProductById(productId);
+    if (!check) {
+      return res.status(400).json({ data: "product not dound" });
+    }
+    const newStatus = await updateProduct(productId, {
+      status: "OUT_OF_STOCK",
+    });
+    return res.status(200).json({ data: newStatus });
   },
 };

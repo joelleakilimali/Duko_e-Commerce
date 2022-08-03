@@ -4,6 +4,9 @@ const {
   findAllBasket,
   findBasketById,
   findBasketByOwnerId,
+  updatedBasket,
+  addProduct,
+  removeProduct,
 } = require("../controllers/basket.controller");
 const route = express.Router();
 /**
@@ -33,4 +36,24 @@ route.get("/:id", findBasketById);
  * @url /api/shops/shoplist/:id
  */
 route.get("/basketowner/:id", findBasketByOwnerId);
+
+/**
+ * @description update an information from product table
+ * @method  PUT
+ * @url /api/basket/:id
+ */
+route.put("/:id", updatedBasket);
+/**
+ * @description update an information from product table
+ * @method  PUT
+ * @url /api/basket/addproduct/:id
+ */
+route.put("/addproduct/:id", addProduct);
+/**
+ * @description remove a product from the basket
+ * @method  PUT
+ * @url /api/basket/removeproduct/:id
+ */
+route.put("/removeproduct/:id", removeProduct);
+
 module.exports = route;

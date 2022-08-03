@@ -13,4 +13,10 @@ module.exports = {
   getBasketByOwnerId: async (ownerId) => {
     return Basket.find({ user: ownerId });
   },
+
+  updateBasket: async (id, body) => {
+    const filter = { _id: id };
+    const update = body;
+    return await Basket.findOneAndUpdate(filter, update);
+  },
 };
